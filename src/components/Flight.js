@@ -8,6 +8,7 @@ class Flight extends Component {
         <div>{this.props.flight.origin} > {this.props.flight.destination}</div>
         <div>Depart: {this.props.flight.departure}</div>
         <div>Arrive: {this.props.flight.arrival}</div>
+        <div>Price: {this.props.flight.price}</div>
       </div>
     );
   }

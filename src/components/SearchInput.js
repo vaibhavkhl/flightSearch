@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css'
 class SearchInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
       originCity: '',
-      destinationCity: ''
+      destinationCity: '',
+      departureDate: '',
+      returnDate: '',
+      value: {
+        min: 0,
+        max: 10000
+      }
     };
 
     this.setOriginCity = this.setOriginCity.bind(this);
@@ -13,6 +20,7 @@ class SearchInput extends Component {
     this.setDepartureDate = this.setDepartureDate.bind(this)
     this.setReturnDate = this.setReturnDate.bind(this)
     this.searchFlights = this.searchFlights.bind(this)
+    this.refineSearch = this.refineSearch.bind(this)
   }
 
   setOriginCity(event) {
@@ -35,6 +43,13 @@ class SearchInput extends Component {
       this.state.departureDate)
   }
 
+  refineSearch(value) {
+    this.setState({
+      value: value
+    })
+    this.props.refineSearch(value)
+  }
+
   render() {
     return (
       <div>
@@ -52,6 +67,14 @@ class SearchInput extends Component {
           <input type="date" value={this.state.returnDate} onChange={this.setReturnDate} />
         </div>
         <div><input type="button" onClick={this.searchFlights} /></div>
+
+        <div>Refine flight search
+          <InputRange
+            maxValue={10000}
+            minValue={0}
+            value={this.state.value}
+            onChange={value => this.refineSearch( value )} />
+        </div>
       </div>
     );
   }
