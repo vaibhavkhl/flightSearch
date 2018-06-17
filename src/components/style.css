@@ -5,3 +5,10 @@
   margin: 10px;
   border: 1px solid black
 }
+
+.flight-box {
+  width: 300px;
+  background: #EDEDEE;
+  margin: 10px;
+  padding: 5px
+}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import './style.css'
 class Flight extends Component {
 
   render() {
     return (
-      <div style={{width: '300px', background: '#EDEDEE', margin: '10px'}}>
+      <div className={'flight-box'}>
         <div>{this.props.flight.origin} > {this.props.flight.destination}</div>
         <div>Depart: {this.props.flight.departure}</div>
         <div>Arrive: {this.props.flight.arrival}</div>

@@ -68,7 +68,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <header>FLight Search Engine</header>
+      <header><h2>Flight Search Engine</h2></header>
         <div style={{display: 'flex', flexDirection: 'row'}}>
           <div className={'search-input-box'}>
             <SearchInput searchFlights={this.searchFlights}

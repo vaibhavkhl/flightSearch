@@ -80,24 +80,24 @@ class SearchInput extends Component {
         </div>
         <div style={divStyle}>
           <input type="text"
-            placeholder="enter origin city"
+            placeholder="enter origin city: PNQ"
             value={this.state.originCity}
             onChange={this.setOriginCity}/>
         </div>
         <div style={divStyle}>
           <input type="text"
-            placeholder="enter destination city"
+            placeholder="enter destination city: MUM"
             value={this.state.destinationCity}
             onChange={this.setDestinationCity}/>
         </div>
         <div style={divStyle}>
-          <label>Departure Date</label>
+          <div><label>Departure Date</label></div>
           <input type="date" value={this.state.departureDate} onChange={this.setDepartureDate} />
         </div>
 
         { this.state.searchType == 'return' &&
           <div style={divStyle}>
-            <label>Return Date</label>
+            <div><label>Return Date</label></div>
             <input type="date" value={this.state.returnDate} onChange={this.setReturnDate} />
           </div>
         }
