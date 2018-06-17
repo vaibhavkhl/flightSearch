@@ -11,7 +11,7 @@ export const flightsData = {
       price: 4000
     },
     {
-      id: 1,
+      id: 2,
       origin: 'PNQ',
       destination: 'MUM',
       arrival: '08.00 PM',
@@ -20,7 +20,7 @@ export const flightsData = {
       price: 6000
     },
     {
-      id: 1,
+      id: 3,
       origin: 'PNQ',
       destination: 'MUM',
       arrival: '01.00 PM',
@@ -29,16 +29,16 @@ export const flightsData = {
       price: 8000
     },
     {
-      id: 1,
+      id: 4,
       origin: 'PNQ',
       destination: 'MUM',
       arrival: '04.00 PM',
       departure: '06.00 PM',
       date: '2018-06-16',
-      price: 10000
+      price: 9000
     },
     {
-      id: 1,
+      id: 5,
       origin: 'PNQ',
       destination: 'MUM',
       arrival: '12.00 PM',
@@ -46,15 +46,43 @@ export const flightsData = {
       date: '2018-06-15'
     },
     {
-      id: 2,
+      id: 6,
       origin: 'MUM',
       destination: 'PNQ',
       arrival: '12.00 PM',
       departure: '10.00 AM',
-      date: '2018-06-16'
+      date: '2018-06-18',
+      price: 4000
     },
     {
-      id: 3,
+      id: 7,
+      origin: 'MUM',
+      destination: 'PNQ',
+      arrival: '12.00 PM',
+      departure: '10.00 AM',
+      date: '2018-06-18',
+      price: 6000,
+    },
+    {
+      id: 8,
+      origin: 'MUM',
+      destination: 'PNQ',
+      arrival: '12.00 PM',
+      departure: '10.00 AM',
+      date: '2018-06-18',
+      price: 8000,
+    },
+    {
+      id: 9,
+      origin: 'MUM',
+      destination: 'PNQ',
+      arrival: '12.00 PM',
+      departure: '10.00 AM',
+      date: '2018-06-18',
+      price: 9000,
+    },
+    {
+      id: 10,
       origin: 'PNQ',
       destination: 'DEL',
       arrival: '12.00 PM',
@@ -62,7 +90,7 @@ export const flightsData = {
       date: '2018-06-16'
     },
     {
-      id: 4,
+      id: 11,
       origin: 'MUM',
       destination: 'DEL',
       arrival: '12.00 PM',
@@ -70,7 +98,7 @@ export const flightsData = {
       date: '2018-06-16'
     },
     {
-      id: 5,
+      id: 12,
       origin: 'BLR',
       destination: 'DEL',
       arrival: '12.00 PM',
@@ -78,7 +106,7 @@ export const flightsData = {
       date: '2018-06-16'
     },
     {
-      id: 6,
+      id: 13,
       origin: 'MUM',
       destination: 'BLR',
       arrival: '12.00 PM',

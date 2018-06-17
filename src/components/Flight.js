@@ -4,7 +4,7 @@ class Flight extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{width: '300px', background: '#EDEDEE', margin: '10px'}}>
         <div>{this.props.flight.origin} > {this.props.flight.destination}</div>
         <div>Depart: {this.props.flight.departure}</div>
         <div>Arrive: {this.props.flight.arrival}</div>

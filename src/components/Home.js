@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import SearchInput from './SearchInput';
-import Flight from './Flight';
+import Flights from './Flights';
 import { flightsData } from '../flightsData'
+import './style.css'
 class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       flightsResults: [],
-      refinedFlightsResults: []
+      refinedFlightsResults: [],
+      returnFlightsResults: [],
+      refinedReturnFlightsResults: []
     }
 
     this.searchFlights = this.searchFlights.bind(this)
     this.refineSearch = this.refineSearch.bind(this)
   }
 
-  searchFlights(originCity, destinationCity, departureDate) {
+  searchFlights(originCity, destinationCity, departureDate, returnDate) {
 
     let flightsResults = flightsData.flights.filter(flight => {
       return flight.origin == originCity &&
@@ -23,9 +26,20 @@ class Home extends Component {
         flight.date == departureDate
     })
 
+    let returnFlightsResults
+    if (returnDate) {
+      returnFlightsResults = flightsData.flights.filter(flight => {
+        return flight.origin == destinationCity &&
+          flight.destination == originCity &&
+          flight.date == returnDate
+      })
+    }
+
     this.setState({
       flightsResults: flightsResults,
-      refinedFlightsResults: flightsResults
+      refinedFlightsResults: flightsResults,
+      returnFlightsResults: returnFlightsResults,
+      refinedReturnFlightsResults: returnFlightsResults
     })
   }
 
@@ -36,21 +50,36 @@ class Home extends Component {
         flight.price > value.min
     })
 
+    let newReturnResults
+    if (this.state.returnFlightsResults.length > 0) {
+      let returnFlights = this.state.returnFlightsResults
+      newReturnResults = returnFlights.filter(flight => {
+        return flight.price < value.max &&
+          flight.price > value.min
+      })
+    }
+
     this.setState({
-      refinedFlightsResults: newResults
+      refinedFlightsResults: newResults,
+      refinedReturnFlightsResults: newReturnResults
     })
   }
 
   render() {
-    let flights = this.state.refinedFlightsResults.map((flight) =>
-      <Flight flight={flight} key={flight.id}></Flight>
-    )
     return (
       <div>
-        <header>FLight Search Engine</header>
-        <SearchInput searchFlights={this.searchFlights} refineSearch={this.refineSearch}></SearchInput>
-        {flights}
-      </div>
+      <header>FLight Search Engine</header>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+          <div className={'search-input-box'}>
+            <SearchInput searchFlights={this.searchFlights}
+            refineSearch={this.refineSearch}></SearchInput>
+          </div>
+          <div style={{width: '70%'}}>
+            <Flights flights={this.state.refinedFlightsResults || []}
+              returnFlights={this.state.refinedReturnFlightsResults || []}></Flights>
+          </div>
+        </div>
+        </div>
     );
   }
 }

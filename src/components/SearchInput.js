@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css'
+
+const divStyle = {
+//  margin: '10px',
+  padding: '10px'
+};
+
 class SearchInput extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +18,8 @@ class SearchInput extends Component {
       value: {
         min: 0,
         max: 10000
-      }
+      },
+      searchType: 'return'
     };
 
     this.setOriginCity = this.setOriginCity.bind(this);
@@ -21,14 +28,16 @@ class SearchInput extends Component {
     this.setReturnDate = this.setReturnDate.bind(this)
     this.searchFlights = this.searchFlights.bind(this)
     this.refineSearch = this.refineSearch.bind(this)
+    this.setOneWay = this.setOneWay.bind(this)
+    this.setReturn = this.setReturn.bind(this)
   }
 
   setOriginCity(event) {
-    this.setState({originCity: event.target.value})
+    this.setState({originCity: event.target.value.toUpperCase()})
   }
 
   setDestinationCity(event) {
-    this.setState({destinationCity: event.target.value})
+    this.setState({destinationCity: event.target.value.toUpperCase()})
   }
 
   setDepartureDate(event) {
@@ -40,7 +49,7 @@ class SearchInput extends Component {
   }
   searchFlights() {
     this.props.searchFlights(this.state.originCity, this.state.destinationCity,
-      this.state.departureDate)
+      this.state.departureDate, this.state.returnDate)
   }
 
   refineSearch(value) {
@@ -50,30 +59,62 @@ class SearchInput extends Component {
     this.props.refineSearch(value)
   }
 
+  setOneWay() {
+    this.setState({
+      searchType: 'oneway'
+    })
+  }
+
+  setReturn() {
+    this.setState({
+      searchType: 'return'
+    })
+  }
+
   render() {
     return (
       <div>
         <div>
+          <button onClick={this.setOneWay}>One way</button>
+          <button onClick={this.setReturn}>Return</button>
+        </div>
+        <div style={divStyle}>
           <input type="text"
+            placeholder="enter origin city"
             value={this.state.originCity}
             onChange={this.setOriginCity}/>
         </div>
-        <div><input type="text" value={this.state.destinationCity}
-        onChange={this.setDestinationCity}/></div>
-        <div>
+        <div style={divStyle}>
+          <input type="text"
+            placeholder="enter destination city"
+            value={this.state.destinationCity}
+            onChange={this.setDestinationCity}/>
+        </div>
+        <div style={divStyle}>
+          <label>Departure Date</label>
           <input type="date" value={this.state.departureDate} onChange={this.setDepartureDate} />
         </div>
-        <div>
-          <input type="date" value={this.state.returnDate} onChange={this.setReturnDate} />
-        </div>
-        <div><input type="button" onClick={this.searchFlights} /></div>
 
-        <div>Refine flight search
-          <InputRange
-            maxValue={10000}
-            minValue={0}
-            value={this.state.value}
-            onChange={value => this.refineSearch( value )} />
+        { this.state.searchType == 'return' &&
+          <div style={divStyle}>
+            <label>Return Date</label>
+            <input type="date" value={this.state.returnDate} onChange={this.setReturnDate} />
+          </div>
+        }
+
+        <div style={divStyle}>
+          <input type="button" value="search" onClick={this.searchFlights} />
+        </div>
+
+        <div style={{padding: '10px', margin: '10px'}}>
+          <label>Refine flight search</label>
+          <div style={{margin: '25px 25px 25px 0'}}>
+            <InputRange
+              maxValue={10000}
+              minValue={0}
+              value={this.state.value}
+              onChange={value => this.refineSearch( value )} />
+          </div>
         </div>
       </div>
     );
